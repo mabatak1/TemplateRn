@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
 import {useEffect} from 'react';
-import {Text, TextInput, View} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {Text, TextInput, View, FlatList} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import {AppContainer} from '../../Components';
 import FastImage from 'react-native-fast-image';
 import Icon, {Icons} from '../../Components/Icon';
@@ -52,6 +53,32 @@ const array = [
     hanSuDung: '2023-03-10',
     trangThai: 'Đang bán',
   },
+  {
+    ten: 'Sản phẩm C',
+    sku: 'SP003',
+    gia: 120.0,
+    moTa: 'Mô tả chi tiết về sản phẩm C',
+    anh: 'https://studiovietnam.com/wp-content/uploads/2022/08/mau-anh-chup-my-pham-01-scaled.jpg',
+    soLuongTonKho: 10,
+    danhMuc: 'Danh mục C',
+    nhaSanXuat: 'Nhà sản xuất DEF',
+    ngaySanXuat: '2022-03-10',
+    hanSuDung: '2023-03-10',
+    trangThai: 'Đang bán',
+  },
+  {
+    ten: 'Sản phẩm C',
+    sku: 'SP003',
+    gia: 120.0,
+    moTa: 'Mô tả chi tiết về sản phẩm C',
+    anh: 'https://studiovietnam.com/wp-content/uploads/2022/08/mau-anh-chup-my-pham-01-scaled.jpg',
+    soLuongTonKho: 10,
+    danhMuc: 'Danh mục C',
+    nhaSanXuat: 'Nhà sản xuất DEF',
+    ngaySanXuat: '2022-03-10',
+    hanSuDung: '2023-03-10',
+    trangThai: 'Đang bán',
+  },
   // Thêm các sản phẩm khác vào đây nếu cần
 ];
 
@@ -61,6 +88,55 @@ export default () => {
   useEffect(() => {}, []);
 
   const renderItem = (item: any, idx: number) => {
+    return (
+      <TouchableOpacity
+        key={idx}
+        style={{
+          backgroundColor: 'white',
+          // justifyContent: 'center',
+          // alignItems: 'center',
+          borderRadius: padding.p12,
+          padding: padding.p8,
+        }}
+        onPress={() => {
+          navigation.navigate('Details');
+        }}>
+        <FastImage
+          style={{height: 120, width: 100, borderRadius: padding.p12}}
+          source={{
+            uri: item?.anh,
+            priority: FastImage.priority.normal,
+          }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+        <View
+          style={{
+            marginTop: padding.p8,
+            justifyContent: 'flex-start',
+            alignItems: 'flex-start',
+            width: '100%',
+            padding: padding.p8,
+          }}>
+          <Text
+            style={{
+              fontSize: fontSize.f16,
+              fontWeight: '700',
+            }}>{`${item?.gia} $`}</Text>
+          <Text
+            style={{
+              marginVertical: padding.p4,
+              fontSize: fontSize.f12,
+              color: color.grayBoder,
+            }}>
+            {item?.sku}
+          </Text>
+          <Text style={{fontSize: fontSize.f14}}>{item?.ten}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
+  const renderItemColum = (item: any, idx: number) => {
     return (
       <TouchableOpacity
         key={idx}
@@ -121,42 +197,104 @@ export default () => {
             size={padding.p24}
           />
         </View>
-        <View style={{height: '30%', marginTop: padding.p12}}>
-          <View style={styles.containerSwiper}>
-            <SwiperFlatList
-              style={{borderRadius: padding.p12}}
-              autoplay
-              autoplayDelay={2}
-              autoplayLoop
-              index={2}
-              showPagination>
-              <View style={[styles.child, {backgroundColor: 'tomato'}]}>
-                <Text style={styles.text}>1</Text>
-              </View>
-              <View style={[styles.child, {backgroundColor: 'thistle'}]}>
-                <Text style={styles.text}>2</Text>
-              </View>
-              <View style={[styles.child, {backgroundColor: 'skyblue'}]}>
-                <Text style={styles.text}>3</Text>
-              </View>
-              <View style={[styles.child, {backgroundColor: 'teal'}]}>
-                <Text style={styles.text}>4</Text>
-              </View>
-            </SwiperFlatList>
+        <ScrollView style={{flex: 1}}>
+          <View
+            style={{
+              height: 200,
+              marginTop: padding.p12,
+              backgroundColor: 'blue',
+            }}>
+            <View style={styles.containerSwiper}>
+              <SwiperFlatList
+                style={{borderRadius: padding.p12}}
+                autoplay
+                autoplayDelay={2}
+                autoplayLoop
+                index={2}
+                showPagination>
+                <View style={[styles.child, {backgroundColor: 'tomato'}]}>
+                  <Text style={styles.text}>1</Text>
+                </View>
+                <View style={[styles.child, {backgroundColor: 'thistle'}]}>
+                  <Text style={styles.text}>2</Text>
+                </View>
+                <View style={[styles.child, {backgroundColor: 'skyblue'}]}>
+                  <Text style={styles.text}>3</Text>
+                </View>
+                <View style={[styles.child, {backgroundColor: 'teal'}]}>
+                  <Text style={styles.text}>4</Text>
+                </View>
+              </SwiperFlatList>
+            </View>
           </View>
-        </View>
-        <View style={{flex: 1, marginTop: padding.p12}}>
-          <FlatList
-            data={array}
-            renderItem={({item, index}) => renderItem(item, index)}
-            keyExtractor={(item: any, index) => index?.toString()}
-            showsVerticalScrollIndicator={false}
-            onEndReachedThreshold={0.5}
-            numColumns={2}
-            contentContainerStyle={{gap: padding.p8}}
-            columnWrapperStyle={{justifyContent: 'space-between'}}
-          />
-        </View>
+          <View style={{marginTop: padding.p12}}>
+            <View style={{marginBottom: padding.p8}}>
+              <Text
+                style={{
+                  color: color.black,
+                  fontWeight: '700',
+                  fontSize: fontSize.f18,
+                }}>
+                Flash sale
+              </Text>
+            </View>
+            <FlatList
+              data={array}
+              renderItem={({item, index}) => renderItem(item, index)}
+              keyExtractor={(item: any, index) => index?.toString()}
+              showsVerticalScrollIndicator={false}
+              horizontal
+              ItemSeparatorComponent={() => {
+                return <View style={{width: padding.p12}} />;
+              }}
+            />
+          </View>
+          <View style={{marginTop: padding.p12}}>
+            <View style={{marginBottom: padding.p8}}>
+              <Text
+                style={{
+                  color: color.black,
+                  fontWeight: '700',
+                  fontSize: fontSize.f18,
+                }}>
+                Bán Chạy
+              </Text>
+            </View>
+            <FlatList
+              data={array}
+              renderItem={({item, index}) => renderItem(item, index)}
+              keyExtractor={(item: any, index) => index?.toString()}
+              showsVerticalScrollIndicator={false}
+              horizontal
+              ItemSeparatorComponent={() => {
+                return <View style={{width: padding.p12}} />;
+              }}
+            />
+          </View>
+          <View style={{marginTop: padding.p12}}>
+            <View style={{marginBottom: padding.p8}}>
+              <Text
+                style={{
+                  color: color.black,
+                  fontWeight: '700',
+                  fontSize: fontSize.f18,
+                }}>
+                Sản Phẩm gợi ý
+              </Text>
+            </View>
+            <FlatList
+              data={array}
+              renderItem={({item, index}) => renderItemColum(item, index)}
+              keyExtractor={(item: any, index) => index?.toString()}
+              showsVerticalScrollIndicator={false}
+              onEndReachedThreshold={0.5}
+              numColumns={2}
+              contentContainerStyle={{gap: padding.p8}}
+              columnWrapperStyle={{justifyContent: 'space-between'}}
+              scrollEnabled={false}
+            />
+          </View>
+        </ScrollView>
       </View>
     </AppContainer>
   );

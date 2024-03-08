@@ -1,4 +1,4 @@
-import {createDrawerNavigator} from '@react-navigation/drawer';
+// import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import _ from 'lodash';
 import React from 'react';
@@ -6,10 +6,11 @@ import {useSelector} from 'react-redux';
 import {SignIn} from '../Modules';
 import {RootState} from '../Redux/Reducers';
 import BottomTabbar from './BottomTabs';
+// import {HomeStackScreen} from './HomeStack';
 
 const AuthStack = createStackNavigator();
 
-const Drawer = createDrawerNavigator();
+// const Drawer = createDrawerNavigator();
 
 const RootStack = createStackNavigator();
 
@@ -28,17 +29,17 @@ const AuthStackScreen = () => (
   </AuthStack.Navigator>
 );
 
-const DrawerScreen = () => (
-  <Drawer.Navigator initialRouteName="Template">
-    <Drawer.Screen
-      name="Home"
-      component={BottomTabbar}
-      options={{
-        headerShown: false,
-      }}
-    />
-  </Drawer.Navigator>
-);
+// const DrawerScreen = () => (
+//   <Drawer.Navigator initialRouteName="Template">
+//     <Drawer.Screen
+//       name="Home"
+//       component={BottomTabbar}
+//       options={{
+//         headerShown: false,
+//       }}
+//     />
+//   </Drawer.Navigator>
+// );
 
 const RootStackScreen = () => {
   const userReducer = useSelector((state: RootState) => state.userReducer);
@@ -58,7 +59,7 @@ const RootStackScreen = () => {
       ) : (
         <RootStack.Screen
           name="App"
-          component={DrawerScreen}
+          component={BottomTabbar}
           options={{
             animationEnabled: true,
             headerShown: false,

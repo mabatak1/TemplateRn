@@ -13,7 +13,6 @@ const api = axios.create({
  * @param {*} response
  */
 const returnData = (response: any) => {
-  console.log('returnData', response);
   let errorMessage = '';
   if (serviceUrls.statusCode.success.includes(response.status)) {
     return {
@@ -48,11 +47,6 @@ const returnData = (response: any) => {
  */
 const setToken = (token: string) => {
   api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-  // api.interceptors.request.use(function (config: any) {
-  //   config.headers.Authorization = token ? `Bearer ${token}` : '';
-  //   return config;
-  // });
-  // api.setHeader('Authorization', `Bearer ${token}`);
 };
 
 /**

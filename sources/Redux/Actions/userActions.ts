@@ -4,11 +4,10 @@ import actionTypes from '../ActionTypes';
  * Reducer actions related with login
  */
 
-export const loginRequest = (body: object, keepLogin: boolean) => {
+export const loginRequest = (body: object) => {
   return {
     type: actionTypes.LOGIN_REQUEST,
     body,
-    keepLogin,
   };
 };
 
@@ -19,15 +18,10 @@ export const loginFailed = (error: any) => {
   };
 };
 
-export const loginSuccess = (
-  response: object,
-  keepLogin?: boolean,
-  body?: object,
-) => {
+export const loginSuccess = (response: object, body?: object) => {
   return {
     type: actionTypes.LOGIN_SUCCESS,
     response,
-    keepLogin,
     body,
   };
 };

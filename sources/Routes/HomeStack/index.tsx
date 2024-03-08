@@ -8,11 +8,15 @@ export const HomeStackScreen = () => (
   <HomeStack.Navigator
     initialRouteName="Home"
     screenOptions={{headerShown: false}}>
+    <HomeStack.Screen name="Home" component={Home} />
     <HomeStack.Screen
-      name="Home"
-      component={Home}
-      options={{headerShown: false}}
+      name="Details"
+      component={Detail}
+      options={{
+        cardStyle: {
+          backgroundColor: 'red',
+        },
+      }}
     />
-    <HomeStack.Screen name="Details" component={Detail} />
   </HomeStack.Navigator>
 );

@@ -1,7 +1,7 @@
 export default {
   url: {
-    HOST: 'https://ssm-uat-api.vnpost.vn',
-    login: 'api/TokenAuth/Authenticate',
+    HOST: 'https://backend-z225.onrender.com/',
+    login: 'api/auth/login',
   },
   statusCode: {
     success: [200, 201, 204],

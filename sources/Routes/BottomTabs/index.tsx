@@ -84,15 +84,15 @@ export default function BottomTabbar() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarStyle: {
-          height: 60,
-          position: 'absolute',
-          bottom: 16,
-          right: 16,
-          left: 16,
-          borderRadius: 16,
-          paddingBottom: 0,
-        },
+        // tabBarStyle: {
+        //   height: 60,
+        //   position: 'absolute',
+        //   bottom: 16,
+        //   right: 16,
+        //   left: 16,
+        //   borderRadius: 16,
+        //   paddingBottom: 0,
+        // },
       }}>
       {TabArr.map((item, index) => {
         return (

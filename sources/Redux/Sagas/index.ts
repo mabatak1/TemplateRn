@@ -1,4 +1,4 @@
-import { takeEvery, all } from 'redux-saga/effects';
+import {takeEvery, all} from 'redux-saga/effects';
 import actionTypes from '../ActionTypes';
 import * as userSaga from './userSaga';
 

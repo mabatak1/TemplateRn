@@ -6,7 +6,7 @@ import styles from './styles';
 import AppText from '../AppText';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation, DrawerActions} from '@react-navigation/native';
-import {useDrawerStatus} from '@react-navigation/drawer';
+// import {useDrawerStatus} from '@react-navigation/drawer';
 
 export interface HeaderProps extends ViewProps {
   isBack?: boolean;
@@ -20,16 +20,16 @@ export interface HeaderProps extends ViewProps {
 
 export default (props: HeaderProps) => {
   const navigation = useNavigation();
-  const isDrawerOpen = useDrawerStatus();
+  // const isDrawerOpen = useDrawerStatus();
 
   const onBackPress = () => navigation.goBack();
 
   const onPressMenu = () => {
-    if (isDrawerOpen) {
-      navigation.dispatch(DrawerActions.closeDrawer);
-      return;
-    }
-    navigation.dispatch(DrawerActions.openDrawer);
+    // if (isDrawerOpen) {
+    //   navigation.dispatch(DrawerActions.closeDrawer);
+    //   return;
+    // }
+    // navigation.dispatch(DrawerActions.openDrawer);
   };
 
   const onLeftPress = () => props.onLeftPress && props.onLeftPress();
