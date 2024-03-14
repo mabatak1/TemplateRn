@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { measure, padding, color, fontSize } from '../../Helpers';
+import {StyleSheet} from 'react-native';
+import {measure, padding, color, fontSize} from '../../Helpers';
 
 export default StyleSheet.create({
   checkboxContainer: {

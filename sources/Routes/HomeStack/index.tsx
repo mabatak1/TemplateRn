@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import {createStackNavigator} from '@react-navigation/stack';
-import {Detail, Home} from '../../Modules';
+import {Cart, Detail, Home} from '../../Modules';
 
 const HomeStack = createStackNavigator();
 
@@ -9,14 +9,7 @@ export const HomeStackScreen = () => (
     initialRouteName="Home"
     screenOptions={{headerShown: false}}>
     <HomeStack.Screen name="Home" component={Home} />
-    <HomeStack.Screen
-      name="Details"
-      component={Detail}
-      options={{
-        cardStyle: {
-          backgroundColor: 'red',
-        },
-      }}
-    />
+    <HomeStack.Screen name="Details" component={Detail} />
+    <HomeStack.Screen name="Cart" component={Cart} />
   </HomeStack.Navigator>
 );

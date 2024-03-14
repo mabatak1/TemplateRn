@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import React from 'react';
-import { ViewStyle } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {ViewStyle} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AppField from '../AppField';
 import AppText from '../AppText';
@@ -19,9 +19,9 @@ interface Props {
 }
 
 const Input = (props: Props) => {
-  const { form, field } = props;
-  const { name, value } = field;
-  const { errors, setFieldValue } = form;
+  const {form, field} = props;
+  const {name, value} = field;
+  const {errors, setFieldValue} = form;
 
   const error = get(errors, name);
 
@@ -32,7 +32,10 @@ const Input = (props: Props) => {
   return (
     <>
       <TouchableOpacity style={styles.checkboxContainer} onPress={onPress}>
-        <MIcon name={value ? 'check-box-outline' : 'checkbox-blank-outline'} style={styles.icon} />
+        <MIcon
+          name={value ? 'check-box-outline' : 'checkbox-blank-outline'}
+          style={styles.icon}
+        />
         <AppText>{props.title}</AppText>
       </TouchableOpacity>
       <AppText>{error}</AppText>
@@ -41,7 +44,7 @@ const Input = (props: Props) => {
 };
 
 export default (props: Props) => {
-  const { memo, name, ...remainProps } = props;
+  const {memo, name, ...remainProps} = props;
   if (memo) {
     return <AppField name={name} component={Input} {...remainProps} />;
   }

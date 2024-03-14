@@ -7,6 +7,8 @@ import {styles} from './styles';
 import {SwiperFlatList} from 'react-native-swiper-flatlist';
 import {color, fontSize, padding} from '../../Helpers';
 import {Rating} from '@kolking/react-native-rating';
+import {ScrollView} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/native';
 
 let dummyData = {
   productId: '123456',
@@ -48,6 +50,8 @@ let dummyData = {
 };
 
 export default () => {
+  const navigation = useNavigation();
+
   const [activeColor, setActiveColor] = useState(dummyData.colors[1]);
   useEffect(() => {}, []);
   return (
@@ -57,142 +61,174 @@ export default () => {
         iconRight="cart-outline"
         isBack
         onRightPress={() => {}}>
-        <View style={{flex: 1, padding: padding.p12}}>
-          <View style={styles.containerSwiper}>
-            <SwiperFlatList
-              style={{borderRadius: padding.p12}}
-              // autoplay
-              // autoplayDelay={2}
-              autoplayLoop
-              index={2}
-              showPagination>
-              <View style={[styles.child, {backgroundColor: 'tomato'}]}>
-                <Text style={styles.text}>1</Text>
-              </View>
-              <View style={[styles.child, {backgroundColor: 'thistle'}]}>
-                <Text style={styles.text}>2</Text>
-              </View>
-              <View style={[styles.child, {backgroundColor: 'skyblue'}]}>
-                <Text style={styles.text}>3</Text>
-              </View>
-              <View style={[styles.child, {backgroundColor: 'teal'}]}>
-                <Text style={styles.text}>4</Text>
-              </View>
-            </SwiperFlatList>
-          </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginVertical: padding.p12,
-            }}>
-            {dummyData.colors.map((i, idx) => {
-              return (
-                <TouchableOpacity
-                  onPress={() => {
-                    setActiveColor(i);
-                  }}
-                  key={idx}
-                  style={{
-                    width: padding.p24,
-                    height: padding.p24,
-                    borderRadius: padding.p4,
-                    backgroundColor: i,
-                    marginRight: padding.p12,
-                    borderColor: color.black,
-                    borderWidth: activeColor == i ? 2 : 0,
-                  }}
-                />
-              );
-            })}
-          </View>
-          <View
-            style={{
-              flex: 1,
-              paddingVertical: padding.p12,
-            }}>
-            <Text
-              style={{
-                fontSize: fontSize.f24,
-                fontWeight: '700',
-                fontFamily: 'Georgia',
-              }}>
-              {dummyData.productName}
-            </Text>
-            <Text
-              style={{
-                fontSize: fontSize.f18,
-                fontWeight: '500',
-                fontFamily: 'Courier New',
-                color: color.greenLimeade,
-                marginTop: padding.p12,
-              }}>
-              {dummyData.price} $
-            </Text>
-            <Text
-              style={{
-                fontSize: fontSize.f16,
-                fontWeight: '400',
-                marginVertical: padding.p12,
-                fontFamily: 'Verdana',
-              }}>
-              Chi tiết : {dummyData.description}
-            </Text>
+        <View
+          style={{
+            flex: 1,
+            padding: padding.p12,
+          }}>
+          <ScrollView style={{flex: 1}}>
+            <View style={styles.containerSwiper}>
+              <SwiperFlatList
+                style={{borderRadius: padding.p12}}
+                // autoplay
+                // autoplayDelay={2}
+                autoplayLoop
+                index={2}
+                showPagination>
+                <View style={[styles.child, {backgroundColor: 'tomato'}]}>
+                  <Text style={styles.text}>1</Text>
+                </View>
+                <View style={[styles.child, {backgroundColor: 'thistle'}]}>
+                  <Text style={styles.text}>2</Text>
+                </View>
+                <View style={[styles.child, {backgroundColor: 'skyblue'}]}>
+                  <Text style={styles.text}>3</Text>
+                </View>
+                <View style={[styles.child, {backgroundColor: 'teal'}]}>
+                  <Text style={styles.text}>4</Text>
+                </View>
+              </SwiperFlatList>
+            </View>
             <View
               style={{
                 flexDirection: 'row',
-                justifyContent: 'flex-start',
+                justifyContent: 'center',
                 alignItems: 'center',
+                marginVertical: padding.p12,
               }}>
-              <Text style={{fontSize: fontSize.f16, marginRight: padding.p6}}>
-                Size:
-              </Text>
-              {dummyData.sizes.map((i, idx) => {
+              {dummyData.colors.map((i, idx) => {
                 return (
-                  <View
+                  <TouchableOpacity
+                    onPress={() => {
+                      setActiveColor(i);
+                    }}
                     key={idx}
                     style={{
-                      paddingHorizontal: padding.p12,
-                      paddingVertical: padding.p4,
+                      width: padding.p24,
+                      height: padding.p24,
                       borderRadius: padding.p4,
-                      backgroundColor: color.white,
-                      marginRight: padding.p8,
-                    }}>
-                    <Text style={{color: color.grayAbbey, fontWeight: '600'}}>
-                      {i}
-                    </Text>
-                  </View>
+                      backgroundColor: i,
+                      marginRight: padding.p12,
+                      borderColor: color.black,
+                      borderWidth: activeColor == i ? 2 : 0,
+                    }}
+                  />
                 );
               })}
             </View>
-            <View>
-              <Text style={{fontSize: fontSize.f16, fontWeight: '600'}}>
-                Reviews{`(${dummyData.reviews.length})`}
+            <View
+              style={{
+                flex: 1,
+                paddingVertical: padding.p12,
+              }}>
+              <Text
+                style={{
+                  fontSize: fontSize.f24,
+                  fontWeight: '700',
+                  fontFamily: 'Georgia',
+                }}>
+                {dummyData.productName}
               </Text>
-              <View style={{marginLeft: padding.p12, marginTop: padding.p8}}>
-                {dummyData.reviews.map((review, idx) => {
+              <Text
+                style={{
+                  fontSize: fontSize.f18,
+                  fontWeight: '500',
+                  fontFamily: 'Courier New',
+                  color: color.greenLimeade,
+                  marginTop: padding.p12,
+                }}>
+                {dummyData.price} $
+              </Text>
+              <Text
+                style={{
+                  fontSize: fontSize.f16,
+                  fontWeight: '400',
+                  marginVertical: padding.p12,
+                  fontFamily: 'Verdana',
+                }}>
+                Chi tiết : {dummyData.description}
+              </Text>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'flex-start',
+                  alignItems: 'center',
+                  marginBottom: padding.p12,
+                }}>
+                <Text style={{fontSize: fontSize.f16, marginRight: padding.p6}}>
+                  Size:
+                </Text>
+                {dummyData.sizes.map((i, idx) => {
                   return (
-                    <View key={idx} style={{marginBottom: padding.p12}}>
-                      <Text style={{fontSize: fontSize.f14, fontWeight: '600'}}>
-                        {review.userName}
-                      </Text>
-                      <Rating
-                        size={16}
-                        rating={review.rating}
-                        variant="stars"
-                        disabled
-                        style={{marginVertical: padding.p8}}
-                      />
-                      <Text style={{fontSize: fontSize.f12, fontWeight: '500'}}>
-                        {review.comment}
+                    <View
+                      key={idx}
+                      style={{
+                        paddingHorizontal: padding.p12,
+                        paddingVertical: padding.p4,
+                        borderRadius: padding.p4,
+                        backgroundColor: color.white,
+                        marginRight: padding.p8,
+                      }}>
+                      <Text style={{color: color.grayAbbey, fontWeight: '600'}}>
+                        {i}
                       </Text>
                     </View>
                   );
                 })}
               </View>
+              <View>
+                <Text style={{fontSize: fontSize.f16, fontWeight: '600'}}>
+                  Reviews{`(${dummyData.reviews.length})`}
+                </Text>
+                <View style={{marginLeft: padding.p12, marginTop: padding.p8}}>
+                  {dummyData.reviews.map((review, idx) => {
+                    return (
+                      <View key={idx} style={{marginBottom: padding.p12}}>
+                        <Text
+                          style={{fontSize: fontSize.f14, fontWeight: '600'}}>
+                          {review.userName}
+                        </Text>
+                        <Rating
+                          size={16}
+                          rating={review.rating}
+                          variant="stars"
+                          disabled
+                          style={{marginVertical: padding.p8}}
+                        />
+                        <Text
+                          style={{fontSize: fontSize.f12, fontWeight: '500'}}>
+                          {review.comment}
+                        </Text>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
             </View>
-          </View>
+            <View style={{paddingBottom: 50}}>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Cart');
+                }}
+                style={{
+                  backgroundColor: color.blueCerulean,
+                  paddingHorizontal: padding.p16,
+                  paddingVertical: padding.p12,
+                  borderRadius: padding.p12,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}>
+                <Text
+                  style={{
+                    fontSize: fontSize.f20,
+                    fontWeight: '600',
+                    color: color.white,
+                  }}>
+                  Thêm vào giỏ hàng
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
         </View>
       </AppContainer>
     </>

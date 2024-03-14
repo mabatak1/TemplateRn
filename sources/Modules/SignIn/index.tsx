@@ -26,12 +26,13 @@ export default () => {
   const [loading, setLoading] = React.useState(false);
 
   const onLogin = useCallback(() => {
-    setLoading(true);
-    const params = {
-      username: 'zxcew',
-      password: '123456',
-    };
-    dispatch(userActions.loginRequest(params));
+    // setLoading(true);
+    // const params = {
+    //   username: 'zxcew',
+    //   password: '123456',
+    // };
+    // dispatch(userActions.loginRequest(params));
+    dispatch(userActions.loginSuccess({accessToken: 'ok'}));
   }, [dispatch]);
 
   useEffect(() => {
